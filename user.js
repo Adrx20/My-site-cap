@@ -5,7 +5,7 @@ let profile = document.getElementById("profile");
 let url = "https://my-json-server.typicode.com/vitaliymv/TH-20-00-Web-middle/";
 
 let xhr = new XMLHttpRequest();
-xhr.open("GET", url + "/users/" + id);
+xhr.open("GET", url + "users/" + id);
 xhr.responseType = "json";
 xhr.send();
 

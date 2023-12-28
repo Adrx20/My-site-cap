@@ -1,6 +1,7 @@
+// 65848e1b9b604bc355b1ea91	
+
 let productsGrid = document.getElementById("products-grid");
 let productsArray = [];
-let url = "https://my-json-server.typicode.com/vitaliymv/TH-20-00-Web-middle";
 let cartProducts = document.getElementById("cart-products")
 let cart = [];
 
@@ -10,7 +11,10 @@ if (localStorage.getItem("cart")) {
 }
 
 let xhr = new XMLHttpRequest();
-xhr.open("GET", url + "/products");
+xhr.open("GET", "https://marketplace-a708.restdb.io/rest/products");
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("x-apikey", "65848e1b9b604bc355b1ea91");
+xhr.setRequestHeader("cache-control", "no-cache");
 xhr.responseType = "json";
 xhr.send();
 
@@ -33,7 +37,7 @@ xhr.onload = () => {
             <p class="product-desc"><b>${p.description}</b></p>
             <p class="product-price"><b>Price: </b>${p.price}UAH</p>
             <a href="userProfile.html?id=${p.author_id}">Seller profile</a>
-            <button onclick="addProductToCart(${p.id})">Buy</button>
+            <button onclick="addProductToCart('${p._id}')">Buy</button>
         `;
         productsGrid.appendChild(pElement);
     });
@@ -46,7 +50,7 @@ function openCart() {
 let cartButton = document.getElementById("cart-button")
 function addProductToCart(id) {
     let product = productsArray.find((p) => {
-        return p.id == id;
+        return p._id == id;
     })
     
     cart.push(product); 
@@ -65,12 +69,12 @@ function drawCart() {
     let uniquProducts = [];
     let sum = 0;
     cart.forEach(p => {
-        if (!productCount[p.id]) {
-            productCount[p.id] = 1;
+        if (!productCount[p._id]) {
+            productCount[p._id] = 1;
             uniquProducts.push(p);
 
         } else {
-            productCount[p.id]++;
+            productCount[p._id]++;
         }
         sum += +p.price;
     })
@@ -81,7 +85,7 @@ function drawCart() {
                 <img src="${p.photo_url}">
                 ${p.name}<br></br>
                 <b>${p.price}</b>
-                (Quantity: ${productCount[p.id]})
+                (Quantity: ${productCount[p._id]})
             </p><hr>
         `
     })
@@ -90,3 +94,5 @@ function drawCart() {
         <button onclick="buyAll()">Buy all</button>
     `
 }
+
+
