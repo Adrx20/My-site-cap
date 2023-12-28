@@ -92,7 +92,6 @@ function drawCart() {
     cartProducts.innerHTML += `
         <p>Total price: ${sum}UAH</p>
         <button onclick="buyAll()">Buy all</button>
-        <button onclick="buyAll()">Buy all</button>
     `
 }
 
