@@ -83,6 +83,12 @@ header {
     border-radius: 15px;
 }
 
+.prodact-desc span {
+    color: initial !important;
+    font-family: initial !important;
+    font-size: 20px !important;
+}
+
 .product button {
     cursor: pointer;
     font-size: 25px;
